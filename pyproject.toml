@@ -1,0 +1,17 @@
+[project]
+name = "vision-for-robotics"
+version = "0.1.0"
+description = "YOLO ONNX detection API with tracking, robot geometry and latency benchmarks."
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.26", "pillow>=10", "onnxruntime>=1.18", "fastapi>=0.110", "uvicorn>=0.29", "python-multipart>=0.0.9"]
+
+[project.optional-dependencies]
+camera = ["opencv-python>=4.9"]
+dev = ["pytest>=8", "onnx>=1.16", "httpx>=0.27"]
+
+[tool.setuptools]
+packages = ["vision"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
