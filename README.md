@@ -7,6 +7,8 @@ camera frame → letterbox 640² → ONNX Runtime (CPU / CUDA / CoreML) → deco
             → IoU tracker (stable IDs) → bearing° / distance m → {"vx": 120, "yaw_rate_deg": -14}
 ```
 
+![Letterbox, raw candidates and NMS](docs/pipeline.png)
+
 ## Quick start
 
 ```bash
@@ -53,7 +55,7 @@ python -m vision.bench --model models/yolo11n.onnx --label "Laptop CPU"
 
 ## Tests
 
-`pytest` runs 10 tests with **no model download**. `vision/fake_model.py` builds a tiny valid ONNX graph with YOLO's exact input/output contract, so the **real ONNX Runtime → postprocess → API** path is exercised end to end:
+`python -m vision.figures` regenerates the figure above. `pytest` runs 10 tests with **no model download**. `vision/fake_model.py` builds a tiny valid ONNX graph with YOLO's exact input/output contract, so the **real ONNX Runtime → postprocess → API** path is exercised end to end:
 
 - letterbox geometry, IoU, NMS, decode and un-letterbox to exact pixel coordinates, transposed output layouts, clipping
 - duplicate suppression vs different-class overlap, confidence and class filters
